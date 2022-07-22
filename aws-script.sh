@@ -136,7 +136,7 @@ sudo chmod 400 $PRIVATE_KP.pem
 #Creating EC2 instance in private subnet -->
 
 echo "EC2 instance 2 in private subnet is creating..."
-EC2_ID2=$(aws ec2 run-instances --image-id $AMI_ID --count 1 --instance-type t2.micro --key-name $PRIVATE_KP --security-group-ids $SG_ID --subnet-id $SUBNET_PRIVATE_ID --user-data file://installtomcatwithjavahome.sh)
+EC2_ID2=$(aws ec2 run-instances --image-id $AMI_ID --count 1 --instance-type t2.micro --key-name $PRIVATE_KP --security-group-ids $SG_ID --subnet-id $SUBNET_PRIVATE_ID)
 
 
 sleep 2m
@@ -148,13 +148,10 @@ echo "PRIVATE INSTANCE ID is '$AWS_PV_INID' CREATED"
 Private_IP=$(aws ec2 describe-instances --filters "Name=instance-id,Values=$AWS_PV_INID" --query 'Reservations[*].Instances[*].[PrivateIpAddress]' --output text)
 echo "PRIVATE IP is '$Private_IP' is created"
 
-EC2PrivateIP=$(printf '%s' "$Private_IP" | sed 's/[#\]/\\\0/g')
-sed -i "s#PrivateEC2IP#$EC2PrivateIP#g" install_apache2.sh
-
 #Creating EC2 instance in public subnet -->
 
 echo "EC2 instance 1 in public subnet is creating..."
-EC2_ID1=$(aws ec2 run-instances --image-id $AMI_ID --count 1 --instance-type t2.micro --key-name $PUBLIC_KP --security-group-ids $SG_ID --subnet-id $SUBNET_PUBLIC_ID --user-data file://install_apache2.sh)
+EC2_ID1=$(aws ec2 run-instances --image-id $AMI_ID --count 1 --instance-type t2.micro --key-name $PUBLIC_KP --security-group-ids $SG_ID --subnet-id $SUBNET_PUBLIC_ID)
 
 sleep 2m
 echo "EC2 instance 1 in public subnet is created...ID is '$EC2_ID1'...."
