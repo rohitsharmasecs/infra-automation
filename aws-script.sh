@@ -11,7 +11,7 @@ PUBLIC_KP="public-key-pair"
 PRIVATE_KP="private-key-pair"
 AMI_ID="ami-068257025f72f470d"
 
-aws configure
+
 
 # VPC -->
 
