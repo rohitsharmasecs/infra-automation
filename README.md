@@ -1,2 +1,0 @@
-# infra-automation
-infra-automation
