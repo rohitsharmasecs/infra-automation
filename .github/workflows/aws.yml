@@ -18,5 +18,5 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Create AWS INFRASTRUCTURE
-      run: ./infra-automation/aws-script.sh
+      run: ./././aws-script.sh
        
