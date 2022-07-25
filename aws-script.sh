@@ -110,7 +110,7 @@ echo "security group is created.. ID is '$SG_ID'...."
 
 #Authorizing security group --->
 
-aws ec2 authorize-security-group-ingress --group-id $SG_ID --protocol tcp --port 22 --cidr 27.58.42.105/32
+aws ec2 authorize-security-group-ingress --group-id $SG_ID --protocol tcp --port 22 --cidr 182.64.71.201/32
 aws ec2 authorize-security-group-ingress --group-id $SG_ID --protocol tcp --port 80 --cidr 0.0.0.0/0
 aws ec2 authorize-security-group-ingress --group-id $SG_ID --protocol tcp --port 8080 --cidr 0.0.0.0/0
 
@@ -136,7 +136,7 @@ sudo chmod 400 $PRIVATE_KP.pem
 #Creating EC2 instance in private subnet -->
 
 echo "EC2 instance 2 in private subnet is creating..."
-EC2_ID2=$(aws ec2 run-instances --image-id $AMI_ID --count 1 --instance-type t2.micro --key-name $PRIVATE_KP --security-group-ids $SG_ID --subnet-id $SUBNET_PRIVATE_ID)
+EC2_ID2=$(aws ec2 run-instances --image-id $AMI_ID --count 1 --instance-type t2.micro --key-name $PRIVATE_KP --security-group-ids $SG_ID --subnet-id $SUBNET_PRIVATE_ID --user-data file://Docker.sh)
 
 
 sleep 2m
@@ -151,7 +151,7 @@ echo "PRIVATE IP is '$Private_IP' is created"
 #Creating EC2 instance in public subnet -->
 
 echo "EC2 instance 1 in public subnet is creating..."
-EC2_ID1=$(aws ec2 run-instances --image-id $AMI_ID --count 1 --instance-type t2.micro --key-name $PUBLIC_KP --security-group-ids $SG_ID --subnet-id $SUBNET_PUBLIC_ID)
+EC2_ID1=$(aws ec2 run-instances --image-id $AMI_ID --count 1 --instance-type t2.micro --key-name $PUBLIC_KP --security-group-ids $SG_ID --subnet-id $SUBNET_PUBLIC_ID --user-data file://Docker.sh)
 
 sleep 2m
 echo "EC2 instance 1 in public subnet is created...ID is '$EC2_ID1'...."
