@@ -9,7 +9,7 @@ SUBNET_PRIVATE_AZ="us-east-1b"
 SUBNET_PRIVATE_NAME="private-subnet"
 PUBLIC_KP="public-key-pair"
 PRIVATE_KP="private-key-pair"
-AMI_ID="ami-068257025f72f470d"
+AMI_ID="ami-052efd3df9dad4825"
 
 
 
