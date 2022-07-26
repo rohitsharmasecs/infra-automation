@@ -142,11 +142,6 @@ EC2_ID2=$(aws ec2 run-instances --image-id $AMI_ID --count 1 --instance-type t2.
 sleep 2m
 echo "EC2 instance 2 in private subnet is created...ID is '$EC2_ID2'...."
 
-AWS_PV_INID=$(aws ec2 describe-instances --query 'Reservations[*].Instances[*].[Placement.AvailabilityZone, State.Name, InstanceId]' --output text | grep $SUBNET_PRIVATE_AZ | grep running | awk '{print $3}')
-echo "PRIVATE INSTANCE ID is '$AWS_PV_INID' CREATED"
-
-Private_IP=$(aws ec2 describe-instances --filters "Name=instance-id,Values=$AWS_PV_INID" --query 'Reservations[*].Instances[*].[PrivateIpAddress]' --output text)
-echo "PRIVATE IP is '$Private_IP' is created"
 
 #Creating EC2 instance in public subnet -->
 
