@@ -8,7 +8,7 @@ SUBNET_PRIVATE_CIDR="10.0.1.0/24"
 SUBNET_PRIVATE_AZ="us-east-1b"
 SUBNET_PRIVATE_NAME="private-subnet"
 PUBLIC_KP="public-key-pair"
-PRIVATE_KP="private-key-pair"
+
 AMI_ID="ami-052efd3df9dad4825"
 
 
@@ -115,28 +115,12 @@ aws ec2 authorize-security-group-ingress --group-id $SG_ID --protocol tcp --port
 aws ec2 authorize-security-group-ingress --group-id $SG_ID --protocol tcp --port 8080 --cidr 0.0.0.0/0
 
 
-
-# Creating key pair for public subnet -->
-
-echo "Creating key pair for public subnet....."
-aws ec2 create-key-pair --key-name $PUBLIC_KP --query 'KeyMaterial' --output text > $PUBLIC_KP.pem
-echo "key pair created..."
-
 sudo chmod 400 $PUBLIC_KP.pem
-
-
-# Creating key pair for private subnet -->
-
-echo "Creating key pair for private subnet....."
-aws ec2 create-key-pair --key-name $PRIVATE_KP --query 'KeyMaterial' --output text > $PRIVATE_KP.pem
-echo "key pair created..."
-
-sudo chmod 400 $PRIVATE_KP.pem
 
 #Creating EC2 instance in private subnet -->
 
 echo "EC2 instance 2 in private subnet is creating..."
-EC2_ID2=$(aws ec2 run-instances --image-id $AMI_ID --count 1 --instance-type t2.micro --key-name $PRIVATE_KP --security-group-ids $SG_ID --subnet-id $SUBNET_PRIVATE_ID --user-data file://Docker.sh)
+EC2_ID2=$(aws ec2 run-instances --image-id $AMI_ID --count 1 --instance-type t2.micro --key-name $PUBLIC_KP --security-group-ids $SG_ID --subnet-id $SUBNET_PRIVATE_ID --user-data file://Docker.sh)
 
 
 sleep 2m
