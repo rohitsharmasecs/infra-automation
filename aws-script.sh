@@ -110,7 +110,7 @@ echo "security group is created.. ID is '$SG_ID'...."
 
 #Authorizing security group --->
 
-aws ec2 authorize-security-group-ingress --group-id $SG_ID --protocol tcp --port 22 --cidr 182.64.71.201/32
+aws ec2 authorize-security-group-ingress --group-id $SG_ID --protocol tcp --port 22 --cidr 0.0.0.0/0
 aws ec2 authorize-security-group-ingress --group-id $SG_ID --protocol tcp --port 80 --cidr 0.0.0.0/0
 aws ec2 authorize-security-group-ingress --group-id $SG_ID --protocol tcp --port 8080 --cidr 0.0.0.0/0
 
