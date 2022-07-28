@@ -7,8 +7,7 @@ SUBNET_PUBLIC_NAME="public-subnet"
 SUBNET_PRIVATE_CIDR="10.0.1.0/24"
 SUBNET_PRIVATE_AZ="us-east-1b"
 SUBNET_PRIVATE_NAME="private-subnet"
-PUBLIC_KP="public-key-pair"
-
+PUBLIC_KP="project-key-pair"
 AMI_ID="ami-052efd3df9dad4825"
 
 
