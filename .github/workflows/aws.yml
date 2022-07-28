@@ -23,4 +23,4 @@ jobs:
         aws-region: us-east-1
 
     - name: AWS infrastructure automation
-      run: bash ./aws-script.sh 
+      run: bash ./aws_script.sh 
