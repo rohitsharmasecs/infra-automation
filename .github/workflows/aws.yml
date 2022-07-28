@@ -23,6 +23,4 @@ jobs:
         aws-region: ${{ secrets.AWS_REGION }}
     
     - name: AWS infrastructure automation
-      run: |
-        sudo apt install awscli -y
-        bash ./aws-script.sh 
+      run: bash ./aws-script.sh 
