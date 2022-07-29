@@ -115,7 +115,7 @@ aws ec2 authorize-security-group-ingress --group-id $SG_ID --protocol tcp --port
 
 
 
-sudo chmod 400 pro-key-pair.pem
+
 
 #Creating EC2 instance in private subnet -->
 
